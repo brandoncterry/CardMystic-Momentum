@@ -17,6 +17,8 @@ export interface UserSettings {
   showClock: boolean
   showGreeting: boolean
   showArtistCredit: boolean
+  showSearchBar: boolean
+  showTopSites: boolean
 }
 
 /** Time-of-day period for greeting */

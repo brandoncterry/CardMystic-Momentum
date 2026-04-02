@@ -11,6 +11,8 @@ const showGreeting = defineModel<boolean>('showGreeting', { required: true })
 const showArtistCredit = defineModel<boolean>('showArtistCredit', {
   required: true,
 })
+const showSearchBar = defineModel<boolean>('showSearchBar', { required: true })
+const showTopSites = defineModel<boolean>('showTopSites', { required: true })
 
 const isOpen = ref(false)
 
@@ -70,6 +72,14 @@ const clockFormatOptions = [
             <div class="flex items-center justify-between">
               <span class="text-sm">Show artist credit</span>
               <USwitch v-model="showArtistCredit" />
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm">Show search bar</span>
+              <USwitch v-model="showSearchBar" />
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm">Show top sites</span>
+              <USwitch v-model="showTopSites" />
             </div>
           </div>
         </div>

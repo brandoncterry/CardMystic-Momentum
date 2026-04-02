@@ -7,6 +7,8 @@ export const DEFAULT_SETTINGS: UserSettings = {
   showClock: true,
   showGreeting: true,
   showArtistCredit: true,
+  showSearchBar: true,
+  showTopSites: true,
 }
 
 export const settingsStorage = storage.defineItem<UserSettings>(

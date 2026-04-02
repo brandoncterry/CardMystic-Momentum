@@ -8,6 +8,8 @@ import ArtistCredit from '../../components/ArtistCredit.vue'
 import ClockDisplay from '../../components/ClockDisplay.vue'
 import GreetingMessage from '../../components/GreetingMessage.vue'
 import SettingsPanel from '../../components/SettingsPanel.vue'
+import SearchBar from '../../components/SearchBar.vue'
+import TopSites from '../../components/TopSites.vue'
 
 const {
   userName,
@@ -15,6 +17,8 @@ const {
   showClock,
   showGreeting,
   showArtistCredit,
+  showSearchBar,
+  showTopSites,
   ready,
 } = useSettings()
 
@@ -82,6 +86,8 @@ function completeFirstRun() {
           :date="formattedDate"
           :visible="showClock"
         />
+        <SearchBar :visible="showSearchBar" />
+        <TopSites :visible="showTopSites" />
       </div>
 
       <!-- Artist credit (bottom-left) -->
@@ -94,6 +100,8 @@ function completeFirstRun() {
         v-model:show-clock="showClock"
         v-model:show-greeting="showGreeting"
         v-model:show-artist-credit="showArtistCredit"
+        v-model:show-search-bar="showSearchBar"
+        v-model:show-top-sites="showTopSites"
       />
 
       <!-- First-run name prompt -->

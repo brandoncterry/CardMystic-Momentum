@@ -8,7 +8,7 @@ export default defineConfig({
     name: 'Arcane Tab — MTG Art New Tab',
     description:
       'Replace your new tab with stunning Magic: The Gathering card art.',
-    permissions: ['storage'],
+    permissions: ['storage', 'topSites'],
   },
   vite: () => ({
     plugins: [ui()],
