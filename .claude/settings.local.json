@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs",
+      "Bash(npx --yes create-wxt@latest . --template vue --pm npm)",
+      "Bash(npx --yes wxt@latest init . --template vue --pm npm)",
+      "Bash(mkdir -p _temp)",
+      "Bash(npx wxt@latest init _temp --template vue --pm npm)",
+      "Bash(cp -r _temp/* _temp/.* .)",
+      "Bash(rm -rf _temp)",
+      "Bash(rm -rf entrypoints components assets)",
+      "Bash(mkdir -p src/entrypoints/newtab src/components src/composables src/utils src/types src/assets/styles)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(node -e \"const pkg = require\\(''./node_modules/wxt/package.json''\\); console.log\\(JSON.stringify\\(pkg.exports, null, 2\\)\\)\")",
+      "Bash(cd:*)",
+      "Bash(npx tsx:*)",
+      "WebFetch(domain:www.artofmtg.com)",
+      "Bash(curl -sI \"https://www.artofmtg.com/wp-content/uploads/2019/06/Soulherder-Modern-Horizons-MtG-Art.jpg\")",
+      "Bash(curl -sI \"https://www.artofmtg.com/wp-content/uploads/2019/06/Soulherder-Modern-Horizons-MtG-Art-1536x1152.jpg\")",
+      "Bash(curl -sI \"https://www.artofmtg.com/wp-content/uploads/2019/06/Soulherder-Modern-Horizons-MtG-Art-2048x1536.jpg\")",
+      "Bash(curl -s \"https://www.artofmtg.com/art/soulherder/\")",
+      "Bash(xargs wc:*)",
+      "Bash(find /c/Users/Brandon Terry/Documents/CardMysticProjects/cardMystic-Momentum -maxdepth 2 -type f -name *.json -o -name *.config.* -o -name *.env*)",
+      "Bash(node -e ':*)",
+      "Bash(npx tsc:*)"
+    ]
+  }
+}

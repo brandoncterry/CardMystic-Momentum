@@ -1,0 +1,31 @@
+{
+  "name": "arcane-tab",
+  "description": "Momentum-style new tab with Magic: The Gathering card art",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "curate": "tsx scripts/curate.ts",
+    "compile": "vue-tsc --noEmit",
+    "postinstall": "wxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^4.6.0",
+    "mana-font": "^1.18.0",
+    "vue": "^3.5.29",
+    "vue-router": "^5.0.4"
+  },
+  "devDependencies": {
+    "@wxt-dev/module-vue": "^1.0.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vue-tsc": "^3.2.5",
+    "wxt": "^0.20.20"
+  }
+}
