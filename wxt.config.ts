@@ -8,7 +8,11 @@ export default defineConfig({
     name: 'Arcane Tab — MTG Art New Tab',
     description:
       'Replace your new tab with stunning Magic: The Gathering card art.',
-    permissions: ['storage', 'topSites'],
+    permissions: ['storage', 'topSites', 'alarms'],
+    host_permissions: [
+      'https://api.scryfall.com/*',
+      'https://brandoncterryy.github.io/*',
+    ],
   },
   vite: () => ({
     plugins: [ui()],

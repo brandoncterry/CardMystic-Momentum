@@ -33,6 +33,10 @@ watch(currentArt, (art) => {
 
 // Dev hotkeys: Left/Right = prev/next art, Up/Down = adjust vertical offset
 function onKeydown(e: KeyboardEvent) {
+  // Don't intercept keys when an input is focused
+  const tag = (e.target as HTMLElement)?.tagName
+  if (tag === 'INPUT' || tag === 'TEXTAREA') return
+
   if (e.key === 'ArrowRight') next()
   else if (e.key === 'ArrowLeft') prev()
   else if (e.key === 'ArrowUp') {
@@ -40,7 +44,7 @@ function onKeydown(e: KeyboardEvent) {
   } else if (e.key === 'ArrowDown') {
     devOffset.value = Math.min(100, devOffset.value + 5)
   } else if (e.key === 'Enter') {
-    console.log(`[offset] ${currentArt.value?.slug}: ${devOffset.value}`)
+    console.log(`[offset] ${currentArt.value?.uuid}: ${devOffset.value}`)
   }
 }
 onMounted(() => window.addEventListener('keydown', onKeydown))

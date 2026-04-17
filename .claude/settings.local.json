@@ -24,7 +24,8 @@
       "Bash(xargs wc:*)",
       "Bash(find /c/Users/Brandon Terry/Documents/CardMysticProjects/cardMystic-Momentum -maxdepth 2 -type f -name *.json -o -name *.config.* -o -name *.env*)",
       "Bash(node -e ':*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npx vue-tsc *)"
     ]
   }
 }

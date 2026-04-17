@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { CuratedCard } from '../types'
+import type { ResolvedCard } from '../types'
 
 defineProps<{
-  art: CuratedCard | null
+  art: ResolvedCard | null
   visible: boolean
 }>()
 </script>

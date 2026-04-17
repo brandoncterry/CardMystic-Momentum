@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import type { CuratedCard } from '../types'
+import type { ResolvedCard } from '../types'
+import { DEFAULT_DOMINANT_COLOR } from '../utils/config'
 
 const props = withDefaults(
   defineProps<{
-    art: CuratedCard | null
+    art: ResolvedCard | null
     isLoading: boolean
     verticalOffset: number
   }>(),
@@ -22,9 +23,12 @@ const transitioning = ref(false)
 let artChanging = false
 
 watch(
-  () => props.art?.slug,
+  () => props.art?.uuid,
   () => {
     if (!props.art) return
+
+    // Set dominant color immediately for instant themed background
+    document.body.style.backgroundColor = props.art.dominantColor || DEFAULT_DOMINANT_COLOR
 
     const newUrl = props.art.imageUrl
     const newOffset = props.art.verticalOffset ?? 50
