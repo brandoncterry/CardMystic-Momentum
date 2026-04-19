@@ -1,45 +1,43 @@
-import { resolveCardForDay } from '../composables/useArtCache'
-import {
-  prefetchedArtStorage,
-  prefetchedDayIndexStorage,
-} from '../utils/storage'
-import { IMAGE_CDN_BASE } from '../utils/config'
+import { fetchCardForDate } from '../composables/useArtCache'
+import { prefetchedCardStorage } from '../utils/storage'
 
 const PREFETCH_ALARM = 'arcane-tab-prefetch'
 
 export default defineBackground(() => {
   console.log('[ArcaneTab] Background worker started')
 
-  // Set up hourly alarm for prefetching tomorrow's card
+  // Set up hourly alarm for prefetching tomorrow's card.
+  // Since each user installs and opens tabs at different times,
+  // prefetch requests are naturally staggered — no thundering herd at midnight.
   browser.alarms.create(PREFETCH_ALARM, {
     periodInMinutes: 60,
-    // First fire after 1 minute so it runs soon after install
-    delayInMinutes: 1,
+    delayInMinutes: 1, // first fire shortly after install
   })
 
   browser.alarms.onAlarm.addListener(async (alarm) => {
     if (alarm.name !== PREFETCH_ALARM) return
 
     try {
-      const tomorrowIndex = Math.floor(Date.now() / 86_400_000) + 1
+      // Compute tomorrow's local date
+      const tomorrow = new Date()
+      tomorrow.setDate(tomorrow.getDate() + 1)
+      const tomorrowDate = tomorrow.toISOString().slice(0, 10)
 
-      // Skip if we already prefetched for tomorrow
-      const cachedDayIndex = await prefetchedDayIndexStorage.getValue()
-      if (cachedDayIndex === tomorrowIndex) return
+      // Skip if we already prefetched tomorrow's card
+      const cached = await prefetchedCardStorage.getValue()
+      if (cached?.date === tomorrowDate) return
 
-      console.log('[ArcaneTab] Prefetching tomorrow\'s card...')
+      console.log('[ArcaneTab] Prefetching card for', tomorrowDate)
 
-      const card = await resolveCardForDay(tomorrowIndex)
-      if (!card) return
+      const card = await fetchCardForDate(tomorrowDate)
 
-      // Save resolved metadata
-      await Promise.all([
-        prefetchedArtStorage.setValue(card),
-        prefetchedDayIndexStorage.setValue(tomorrowIndex),
-      ])
+      // Save resolved card data
+      await prefetchedCardStorage.setValue(card)
 
       // Warm the browser HTTP cache by fetching the image
-      await fetch(card.imageUrl)
+      if (card.imageUrl) {
+        await fetch(card.imageUrl)
+      }
 
       console.log(`[ArcaneTab] Prefetched: "${card.cardName}" by ${card.artistName}`)
     } catch (err) {

@@ -1,16 +1,11 @@
 /**
  * Central configuration for remote resources.
- * Change IMAGE_CDN_BASE when migrating from GitHub Pages to R2/CloudFront.
  */
 
-/** Base URL for hosted card art images (no trailing slash) */
-export const IMAGE_CDN_BASE =
-  'https://github.com/brandoncterry/mtg-art'
+/** Arcane Tab API base URL (no trailing slash) */
+export const API_BASE = 'https://cardmystic-companion-api.cardmystic-companion.workers.dev'
 
-/** Scryfall API base URL */
-export const SCRYFALL_API_BASE = 'https://api.scryfall.com'
-
-/** Default dominant color when none is pre-computed */
+/** Default dominant color when none is provided by the API */
 export const DEFAULT_DOMINANT_COLOR = '#1a1a2e'
 
 /** Default vertical offset for image centering */

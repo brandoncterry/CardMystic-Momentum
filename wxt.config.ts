@@ -10,8 +10,8 @@ export default defineConfig({
       'Replace your new tab with stunning Magic: The Gathering card art.',
     permissions: ['storage', 'topSites', 'alarms'],
     host_permissions: [
-      'https://api.scryfall.com/*',
-      'https://brandoncterryy.github.io/*',
+      'https://cardmystic-companion-api.cardmystic-companion.workers.dev/*',
+      'https://pub-7b17b8297065456094ad110fe94cabe0.r2.dev/*',
     ],
   },
   vite: () => ({

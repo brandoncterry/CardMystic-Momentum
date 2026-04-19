@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { ref, watch } from 'vue'
 import { useSettings } from '../../composables/useSettings'
 import { useClock } from '../../composables/useClock'
 import { useArtCache } from '../../composables/useArtCache'
@@ -23,32 +23,7 @@ const {
 } = useSettings()
 
 const { formattedTime, formattedDate, period } = useClock(clockFormat)
-const { currentArt, isLoading, next, prev } = useArtCache()
-
-// Dev: live vertical offset adjustment
-const devOffset = ref(currentArt.value?.verticalOffset ?? 50)
-watch(currentArt, (art) => {
-  devOffset.value = art?.verticalOffset ?? 50
-})
-
-// Dev hotkeys: Left/Right = prev/next art, Up/Down = adjust vertical offset
-function onKeydown(e: KeyboardEvent) {
-  // Don't intercept keys when an input is focused
-  const tag = (e.target as HTMLElement)?.tagName
-  if (tag === 'INPUT' || tag === 'TEXTAREA') return
-
-  if (e.key === 'ArrowRight') next()
-  else if (e.key === 'ArrowLeft') prev()
-  else if (e.key === 'ArrowUp') {
-    devOffset.value = Math.max(0, devOffset.value - 5)
-  } else if (e.key === 'ArrowDown') {
-    devOffset.value = Math.min(100, devOffset.value + 5)
-  } else if (e.key === 'Enter') {
-    console.log(`[offset] ${currentArt.value?.uuid}: ${devOffset.value}`)
-  }
-}
-onMounted(() => window.addEventListener('keydown', onKeydown))
-onUnmounted(() => window.removeEventListener('keydown', onKeydown))
+const { currentArt, isLoading } = useArtCache()
 
 // First-run: show name prompt when settings are ready but no name set
 const showFirstRun = ref(false)
@@ -74,7 +49,7 @@ function completeFirstRun() {
   <UApp>
     <div class="relative h-screen w-screen overflow-hidden">
       <!-- Background art with crossfade -->
-      <BackgroundImage :art="currentArt" :is-loading="isLoading" :vertical-offset="devOffset" />
+      <BackgroundImage :art="currentArt" :is-loading="isLoading" :vertical-offset="currentArt?.verticalOffset ?? 50" />
 
       <!-- Center content: greeting + clock -->
       <div

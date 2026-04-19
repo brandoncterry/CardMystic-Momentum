@@ -16,26 +16,14 @@ export const settingsStorage = storage.defineItem<UserSettings>(
   { fallback: DEFAULT_SETTINGS },
 )
 
-/** Cache the current day's resolved card for instant render on new tab */
-export const currentArtStorage = storage.defineItem<ResolvedCard | null>(
-  'local:arcane-tab:current',
+/** Today's card — rendered on new tab. Keyed by date in the card itself. */
+export const currentCardStorage = storage.defineItem<ResolvedCard | null>(
+  'local:arcane-tab:current-card',
   { fallback: null },
 )
 
-/** Track which UTC day index was last stored, to detect day change */
-export const currentDayIndexStorage = storage.defineItem<number>(
-  'local:arcane-tab:day-index',
-  { fallback: -1 },
-)
-
-/** Cache prefetched card for tomorrow (avoids network wait at midnight) */
-export const prefetchedArtStorage = storage.defineItem<ResolvedCard | null>(
-  'local:arcane-tab:prefetched',
+/** Tomorrow's card — prefetched by the background worker for instant transition. */
+export const prefetchedCardStorage = storage.defineItem<ResolvedCard | null>(
+  'local:arcane-tab:prefetched-card',
   { fallback: null },
-)
-
-/** UTC day index of the prefetched card */
-export const prefetchedDayIndexStorage = storage.defineItem<number>(
-  'local:arcane-tab:prefetched-day-index',
-  { fallback: -1 },
 )
