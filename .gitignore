@@ -33,3 +33,8 @@ backend/scripts/curated-cards-snapshot.ts
 *.njsproj
 *.sln
 *.sw?
+
+# Image files
+*.png
+*.jpg
+*.jpeg
