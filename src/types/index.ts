@@ -23,9 +23,13 @@ export interface UserSettings {
   clockFormat: '12h' | '24h'
   showClock: boolean
   showGreeting: boolean
-  showArtistCredit: boolean
   showSearchBar: boolean
   showTopSites: boolean
+  textReadability: 'subtle' | 'strong'
+  fontFamily: 'system' | 'serif' | 'mono' | 'rounded'
+  clockSize: 'small' | 'medium' | 'large'
+  dateSize: 'small' | 'medium' | 'large'
+  greetingSize: 'small' | 'medium' | 'large'
 }
 
 /** Time-of-day period for greeting */

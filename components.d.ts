@@ -14,6 +14,8 @@ declare module 'vue' {
     ArtistCredit: typeof import('./src/components/ArtistCredit.vue')['default']
     BackgroundImage: typeof import('./src/components/BackgroundImage.vue')['default']
     ClockDisplay: typeof import('./src/components/ClockDisplay.vue')['default']
+    DashboardControls: typeof import('./src/components/DashboardControls.vue')['default']
+    FirstRunModal: typeof import('./src/components/FirstRunModal.vue')['default']
     GreetingMessage: typeof import('./src/components/GreetingMessage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -21,13 +23,7 @@ declare module 'vue' {
     SettingsPanel: typeof import('./src/components/SettingsPanel.vue')['default']
     TopSites: typeof import('./src/components/TopSites.vue')['default']
     UApp: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/App.vue')['default']
-    UButton: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Button.vue')['default']
-    UFormField: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/FormField.vue')['default']
     UIcon: typeof import('./node_modules/@nuxt/ui/dist/runtime/vue/components/Icon.vue')['default']
-    UInput: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Input.vue')['default']
-    UModal: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Modal.vue')['default']
-    USelect: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Select.vue')['default']
-    USlideover: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Slideover.vue')['default']
     USwitch: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Switch.vue')['default']
   }
 }

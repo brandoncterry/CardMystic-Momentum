@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useSettings } from '../../composables/useSettings'
 import { useClock } from '../../composables/useClock'
 import { useArtCache } from '../../composables/useArtCache'
+import { useFavorites } from '../../composables/useFavorites'
 import BackgroundImage from '../../components/BackgroundImage.vue'
 import ArtistCredit from '../../components/ArtistCredit.vue'
 import ClockDisplay from '../../components/ClockDisplay.vue'
@@ -10,24 +11,38 @@ import GreetingMessage from '../../components/GreetingMessage.vue'
 import SettingsPanel from '../../components/SettingsPanel.vue'
 import SearchBar from '../../components/SearchBar.vue'
 import TopSites from '../../components/TopSites.vue'
+import DashboardControls from '../../components/DashboardControls.vue'
+import FirstRunModal from '../../components/FirstRunModal.vue'
 
 const {
   userName,
   clockFormat,
   showClock,
   showGreeting,
-  showArtistCredit,
   showSearchBar,
   showTopSites,
+  textReadability,
+  fontFamily,
+  clockSize,
+  dateSize,
+  greetingSize,
   ready,
 } = useSettings()
 
 const { formattedTime, formattedDate, period } = useClock(clockFormat)
 const { currentArt, isLoading } = useArtCache()
+const { favorites, isFavorited, toggleFavorite } = useFavorites()
 
-// First-run: show name prompt when settings are ready but no name set
+const settingsOpen = ref(false)
 const showFirstRun = ref(false)
-const firstRunName = ref('')
+
+const isCurrentFavorited = computed(() =>
+  currentArt.value ? isFavorited(currentArt.value.uuid) : false,
+)
+
+function handleToggleFavorite() {
+  if (currentArt.value) toggleFavorite(currentArt.value)
+}
 
 watch(
   [ready, userName],
@@ -37,10 +52,8 @@ watch(
   { immediate: true },
 )
 
-function completeFirstRun() {
-  if (firstRunName.value.trim()) {
-    userName.value = firstRunName.value.trim()
-  }
+function completeFirstRun(name: string) {
+  if (name) userName.value = name
   showFirstRun.value = false
 }
 </script>
@@ -48,67 +61,60 @@ function completeFirstRun() {
 <template>
   <UApp>
     <div class="relative h-screen w-screen overflow-hidden">
-      <!-- Background art with crossfade -->
       <BackgroundImage :art="currentArt" :is-loading="isLoading" :vertical-offset="currentArt?.verticalOffset ?? 50" />
 
-      <!-- Center content: greeting + clock -->
       <div
-        class="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2"
+        class="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4"
       >
-        <GreetingMessage
-          :period="period"
-          :user-name="userName"
-          :visible="showGreeting"
-        />
         <ClockDisplay
           :time="formattedTime"
           :date="formattedDate"
           :visible="showClock"
+          :readability="textReadability"
+          :font-family="fontFamily"
+          :clock-size="clockSize"
+          :date-size="dateSize"
+        />
+        <GreetingMessage
+          :period="period"
+          :user-name="userName"
+          :visible="showGreeting"
+          :readability="textReadability"
+          :font-family="fontFamily"
+          :greeting-size="greetingSize"
         />
         <SearchBar :visible="showSearchBar" />
         <TopSites :visible="showTopSites" />
       </div>
 
-      <!-- Artist credit (bottom-left) -->
-      <ArtistCredit :art="currentArt" :visible="showArtistCredit" />
-
-      <!-- Settings gear (bottom-right) -->
-      <SettingsPanel
-        v-model:user-name="userName"
-        v-model:clock-format="clockFormat"
-        v-model:show-clock="showClock"
-        v-model:show-greeting="showGreeting"
-        v-model:show-artist-credit="showArtistCredit"
-        v-model:show-search-bar="showSearchBar"
-        v-model:show-top-sites="showTopSites"
-      />
-
-      <!-- First-run name prompt -->
-      <UModal v-model:open="showFirstRun" :dismissible="false">
-        <template #content>
-          <div class="p-6 text-center">
-            <i class="ms ms-planeswalker ms-3x mb-4 block text-primary" />
-            <h2 class="text-xl font-semibold mb-2">Welcome to Arcane Tab</h2>
-            <p class="text-sm text-neutral-500 mb-6">
-              Stunning Magic: The Gathering art, every new tab.
-            </p>
-            <UInput
-              v-model="firstRunName"
-              placeholder="What's your name?"
-              size="lg"
-              class="mb-4"
-              autofocus
-              @keyup.enter="completeFirstRun"
-            />
-            <UButton
-              label="Get Started"
-              block
-              size="lg"
-              @click="completeFirstRun"
-            />
-          </div>
-        </template>
-      </UModal>
+      <ArtistCredit :art="currentArt" />
     </div>
+
+    <DashboardControls
+      v-model:settings-open="settingsOpen"
+      :is-favorited="isCurrentFavorited"
+      @toggle-favorite="handleToggleFavorite"
+    />
+
+    <SettingsPanel
+      v-model:open="settingsOpen"
+      v-model:user-name="userName"
+      v-model:clock-format="clockFormat"
+      v-model:show-clock="showClock"
+      v-model:show-greeting="showGreeting"
+      v-model:show-search-bar="showSearchBar"
+      v-model:show-top-sites="showTopSites"
+      v-model:text-readability="textReadability"
+      v-model:font-family="fontFamily"
+      v-model:clock-size="clockSize"
+      v-model:date-size="dateSize"
+      v-model:greeting-size="greetingSize"
+      :favorites="favorites"
+    />
+
+    <FirstRunModal
+      v-model:open="showFirstRun"
+      @complete="completeFirstRun"
+    />
   </UApp>
 </template>

@@ -6,9 +6,13 @@ export const DEFAULT_SETTINGS: UserSettings = {
   clockFormat: '12h',
   showClock: true,
   showGreeting: true,
-  showArtistCredit: true,
   showSearchBar: true,
   showTopSites: true,
+  textReadability: 'strong',
+  fontFamily: 'system',
+  clockSize: 'medium',
+  dateSize: 'medium',
+  greetingSize: 'medium',
 }
 
 export const settingsStorage = storage.defineItem<UserSettings>(
@@ -26,4 +30,10 @@ export const currentCardStorage = storage.defineItem<ResolvedCard | null>(
 export const prefetchedCardStorage = storage.defineItem<ResolvedCard | null>(
   'local:arcane-tab:prefetched-card',
   { fallback: null },
+)
+
+/** User's favorited cards. */
+export const favoritesStorage = storage.defineItem<ResolvedCard[]>(
+  'local:arcane-tab:favorites',
+  { fallback: [] },
 )

@@ -3,16 +3,11 @@ import type { ResolvedCard } from '../types'
 
 defineProps<{
   art: ResolvedCard | null
-  visible: boolean
 }>()
 </script>
 
 <template>
-  <div
-    v-if="art"
-    class="fixed bottom-4 left-4 z-20 max-w-lg"
-    :class="visible ? '' : 'sr-only'"
-  >
+  <div v-if="art" class="fixed bottom-4 left-4 z-20 max-w-lg">
     <div
       class="rounded-lg bg-black/40 px-3 py-1.5 text-sm text-white/80 backdrop-blur-sm"
     >
