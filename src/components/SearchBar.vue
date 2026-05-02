@@ -164,7 +164,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div v-if="visible" class="w-full max-w-[584px] mt-6 search-bar-container">
+  <div v-if="visible" class="w-full max-w-[584px] search-bar-container">
     <!-- Search bar -->
     <form @submit.prevent="handleSearch">
       <div

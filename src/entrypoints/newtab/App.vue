@@ -63,28 +63,39 @@ function completeFirstRun(name: string) {
     <div class="relative h-screen w-screen overflow-hidden">
       <BackgroundImage :art="currentArt" :is-loading="isLoading" :vertical-offset="currentArt?.verticalOffset ?? 50" />
 
-      <div
-        class="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4"
-      >
-        <ClockDisplay
-          :time="formattedTime"
-          :date="formattedDate"
-          :visible="showClock"
-          :readability="textReadability"
-          :font-family="fontFamily"
-          :clock-size="clockSize"
-          :date-size="dateSize"
-        />
-        <GreetingMessage
-          :period="period"
-          :user-name="userName"
-          :visible="showGreeting"
-          :readability="textReadability"
-          :font-family="fontFamily"
-          :greeting-size="greetingSize"
-        />
-        <SearchBar :visible="showSearchBar" />
-        <TopSites :visible="showTopSites" />
+      <div class="absolute inset-0 z-10">
+        <!-- Above-anchor: Clock + Greeting, bottom-aligned at viewport center
+             with breathing room so the SearchBar isn't flush against Greeting -->
+        <div
+          class="absolute left-0 right-0 bottom-1/2 flex flex-col items-center gap-4 pb-10"
+        >
+          <ClockDisplay
+            :time="formattedTime"
+            :date="formattedDate"
+            :visible="showClock"
+            :readability="textReadability"
+            :font-family="fontFamily"
+            :clock-size="clockSize"
+            :date-size="dateSize"
+          />
+          <GreetingMessage
+            :period="period"
+            :user-name="userName"
+            :visible="showGreeting"
+            :readability="textReadability"
+            :font-family="fontFamily"
+            :greeting-size="greetingSize"
+          />
+        </div>
+
+        <!-- Below-anchor: SearchBar's top edge sits exactly on viewport center.
+             The autocomplete dropdown grows downward, pushing only TopSites. -->
+        <div
+          class="absolute left-0 right-0 top-1/2 flex flex-col items-center gap-4"
+        >
+          <SearchBar :visible="showSearchBar" />
+          <TopSites :visible="showTopSites" />
+        </div>
       </div>
 
       <ArtistCredit :art="currentArt" />

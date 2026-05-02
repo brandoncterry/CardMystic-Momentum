@@ -51,12 +51,28 @@ npm run download-art       # Run the offline art pipeline (artofmtg → Scryfall
 npm run compile            # vue-tsc --noEmit type check
 ```
 
-## Loading the extension locally
+## Install in Chrome
+
+### Daily-use install (recommended)
+
+Loads the production build into your main Chrome profile as an unpacked extension. Survives Chrome restarts; Chrome will show a "Disable developer mode extensions" warning at startup, which is normal for unpacked installs.
 
 1. `npm install`
-2. `npm run dev` — WXT writes the unpacked extension to `.output/chrome-mv3/`
-3. Visit `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, and select `.output/chrome-mv3/`
-4. Open a new tab — the first-run modal will appear
+2. `npm run build` — output lands at `.output/chrome-mv3/`
+3. Open `chrome://extensions`
+4. Toggle **Developer mode** on (top-right)
+5. Click **Load unpacked** and select the `.output/chrome-mv3/` folder
+6. Open a new tab — the first-run modal will appear
+
+To update after editing code: `npm run build` again, then click the **reload** ↻ icon on the extension's card in `chrome://extensions`.
+
+### Dev mode (hot reload, for active development)
+
+`npm run dev` launches a separate Chrome instance with the extension auto-loaded and reloads on file save. The extension is wired to that dev Chrome only — it won't appear in your main profile.
+
+### Packaging
+
+`npm run zip` produces a `.zip` in `.output/` suitable for Chrome Web Store submission or sharing. Chrome stable blocks installing local `.crx` files, so for personal use the unpacked install above is the right path.
 
 ## Recommended IDE setup
 
