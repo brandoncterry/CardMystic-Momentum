@@ -68,8 +68,8 @@ const sections: { id: SectionId; label: string }[] = [
       <!-- Sidebar nav -->
       <aside class="w-44 shrink-0 border-r border-white/5 flex flex-col py-6 px-3">
         <div class="flex items-center gap-2 px-2.5 mb-5">
-          <i class="ms ms-planeswalker text-white text-base" />
-          <span class="text-sm font-semibold tracking-tight">Arcane Tab</span>
+          <img src="/icon/128.png" alt="CardMystic Companion" class="size-4" />
+          <span class="text-sm font-semibold tracking-tight">CardMystic Companion</span>
         </div>
 
         <nav class="flex flex-col gap-0.5">
@@ -312,19 +312,19 @@ const sections: { id: SectionId; label: string }[] = [
         <div v-else-if="activeSection === 'about'">
           <header class="mb-6">
             <h2 class="text-[22px] font-medium text-white tracking-tight">About</h2>
-            <p class="text-sm text-white/50 mt-1">Arcane Tab — Magic: The Gathering art on every new tab</p>
+            <p class="text-sm text-white/50 mt-1">CardMystic Companion — Magic: The Gathering art on every new tab</p>
           </header>
 
           <div class="space-y-4 text-sm text-white/75 leading-relaxed">
             <p>
-              Arcane Tab replaces your new tab page with a curated rotation of stunning Magic:
+              CardMystic Companion replaces your new tab page with a curated rotation of stunning Magic:
               The Gathering card art — one piece per day.
             </p>
 
             <div class="rounded-md border border-white/10 bg-white/5 p-4">
               <h3 class="text-sm font-medium text-white mb-2">Fan Content Policy</h3>
               <p class="text-xs text-white/55 leading-relaxed">
-                Arcane Tab is unofficial Fan Content permitted under the Fan Content Policy. Not
+                CardMystic Companion is unofficial Fan Content permitted under the Fan Content Policy. Not
                 approved/endorsed by Wizards. Portions of the materials used are property of
                 Wizards of the Coast. &copy; Wizards of the Coast LLC.
               </p>

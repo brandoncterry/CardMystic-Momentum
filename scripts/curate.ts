@@ -215,7 +215,7 @@ async function main() {
   const slugs = readSlugs()
   const forceAll = args.includes('--force')
 
-  console.log(`\nArcane Tab Card Curator`)
+  console.log(`\nCardMystic Companion Card Curator`)
   console.log(`cards.txt: ${slugs.length} entries\n`)
 
   if (args.includes('--count')) return

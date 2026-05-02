@@ -20,9 +20,9 @@ export async function fetchCardForDate(date: string): Promise<ResolvedCard> {
 /** Fallback card for offline / API failure on first load */
 const FALLBACK_CARD: ResolvedCard = {
   uuid: 'fallback',
-  cardName: 'Welcome to Arcane Tab',
+  cardName: 'Welcome to CardMystic Companion',
   artistName: 'Wizards of the Coast',
-  setName: 'Arcane Tab',
+  setName: 'CardMystic Companion',
   scryfallUri: 'https://scryfall.com',
   imageUrl: '',
   verticalOffset: DEFAULT_VERTICAL_OFFSET,
@@ -60,7 +60,7 @@ export function useArtCache() {
       currentArt.value = card
       await currentCardStorage.setValue(card)
     } catch (err) {
-      console.warn('[ArcaneTab] API fetch failed, using cache or fallback:', err)
+      console.warn('[CardMysticCompanion] API fetch failed, using cache or fallback:', err)
       // Stale cache is better than nothing
       if (cached) {
         currentArt.value = cached

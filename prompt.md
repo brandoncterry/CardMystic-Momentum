@@ -1,4 +1,4 @@
-# Claude Code Prompt: MTG New Tab Extension ("Arcane Tab")
+# Claude Code Prompt: MTG New Tab Extension ("CardMystic Companion")
 
 ## Project Overview
 
@@ -69,7 +69,7 @@ import { defineConfig } from 'wxt'
 export default defineConfig({
   modules: ['@wxt-dev/module-vue'],
   manifest: {
-    name: 'Arcane Tab — MTG Art New Tab',
+    name: 'CardMystic Companion — MTG Art New Tab',
     description: 'Replace your new tab with stunning Magic: The Gathering card art.',
     permissions: ['storage'],
     // Note: No host_permissions needed — Scryfall images are fetched via
@@ -173,7 +173,7 @@ Scryfall's `q` parameter supports a powerful search syntax. Use these to get hig
 
 - Insert **50–100ms delay** between requests (max ~10 req/sec)
 - Cache aggressively — art URLs don't change frequently
-- Include a descriptive `User-Agent` header (e.g., `ArcaneTab/1.0`)
+- Include a descriptive `User-Agent` header (e.g., `CardMysticCompanion/1.0`)
 - You **must** display the **artist name** and **© Wizards of the Coast** when using `art_crop` images
 
 ---
@@ -194,7 +194,7 @@ This extension is **fan content** under the [Wizards of the Coast Fan Content Po
 - The extension must be **free** (no paid features)
 - Include this disclaimer somewhere accessible (e.g., settings/about panel):
 
-> *"Arcane Tab is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC."*
+> *"CardMystic Companion is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC."*
 
 - Do NOT use Wizards' logos or trademarks independently
 - Do NOT remove copyright/trademark notices from card images
@@ -251,7 +251,7 @@ Handles all Scryfall API communication.
 // - Extract art_crop URL, artist name, card name from response
 // - Handle multi-face cards (check card_faces[0] if root image_uris is absent)
 // - Respect rate limits: minimum 100ms between requests
-// - Always include User-Agent header: 'ArcaneTab/1.0'
+// - Always include User-Agent header: 'CardMysticCompanion/1.0'
 // - Return null gracefully if a card has no art_crop available
 // - Prefetch multiple cards at once for the queue (batch with delays)
 ```
@@ -414,11 +414,11 @@ All data stored in `chrome.storage.local` under these keys:
 
 ```ts
 {
-  'arcane-tab:settings': UserSettings,
-  'arcane-tab:current': CachedArt | null,
-  'arcane-tab:queue': CachedArt[],
-  'arcane-tab:favorites': CachedArt[],
-  'arcane-tab:last-rotated': number
+  'cardmystic-companion:settings': UserSettings,
+  'cardmystic-companion:current': CachedArt | null,
+  'cardmystic-companion:queue': CachedArt[],
+  'cardmystic-companion:favorites': CachedArt[],
+  'cardmystic-companion:last-rotated': number
 }
 ```
 

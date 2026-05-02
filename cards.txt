@@ -1,4 +1,4 @@
-# Arcane Tab — Curated Card Art List
+# CardMystic Companion — Curated Card Art List
 # One artofmtg.com slug per line (the part after /art/ in the URL)
 # Example: for https://www.artofmtg.com/art/soulherder/ → soulherder
 # Lines starting with # are comments

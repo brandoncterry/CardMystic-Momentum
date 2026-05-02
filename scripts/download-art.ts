@@ -70,7 +70,7 @@ async function fetchScryfall(url: string): Promise<Response> {
   lastScryfallTime = Date.now()
   return fetch(url, {
     headers: {
-      'User-Agent': 'ArcaneTab/1.0 (MTG New Tab Extension)',
+      'User-Agent': 'CardMysticCompanion/1.0 (MTG New Tab Extension)',
       Accept: 'application/json',
     },
   })
@@ -349,7 +349,7 @@ async function main() {
   const outputDir = outputDirArg ?? DEFAULT_OUTPUT_DIR
   const imagesDir = path.join(outputDir, 'images')
 
-  console.log('\n🔮 Arcane Tab — Automated Art Pipeline\n')
+  console.log('\n🔮 CardMystic Companion — Automated Art Pipeline\n')
   console.log('  Step 1: Scrape artofmtg.com for card metadata + image URLs')
   console.log('  Step 2: Search Scryfall for matching UUID by card name + set')
   console.log('  Step 3: Download images as {uuid}.jpg')

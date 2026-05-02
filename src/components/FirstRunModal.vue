@@ -43,9 +43,9 @@ function submit() {
         <div
           class="w-[420px] max-w-full rounded-xl bg-neutral-950/92 backdrop-blur-xl border border-white/10 shadow-2xl p-8 text-center text-white"
         >
-          <i class="ms ms-planeswalker ms-3x mb-4 block text-white/75" />
+          <img src="/icon/128.png" alt="CardMystic Companion" class="size-9 mx-auto mb-4" />
 
-          <h2 class="text-xl font-medium text-white mb-1.5">Welcome to Arcane Tab</h2>
+          <h2 class="text-xl font-medium text-white mb-1.5">Welcome to CardMystic Companion</h2>
           <p class="text-sm text-white/50 mb-5">
             A curated gallery of card art, one piece per new tab.
           </p>

@@ -1,10 +1,10 @@
 import { fetchCardForDate } from '../composables/useArtCache'
 import { prefetchedCardStorage } from '../utils/storage'
 
-const PREFETCH_ALARM = 'arcane-tab-prefetch'
+const PREFETCH_ALARM = 'cardmystic-companion-prefetch'
 
 export default defineBackground(() => {
-  console.log('[ArcaneTab] Background worker started')
+  console.log('[CardMysticCompanion] Background worker started')
 
   // Set up hourly alarm for prefetching tomorrow's card.
   // Since each user installs and opens tabs at different times,
@@ -27,7 +27,7 @@ export default defineBackground(() => {
       const cached = await prefetchedCardStorage.getValue()
       if (cached?.date === tomorrowDate) return
 
-      console.log('[ArcaneTab] Prefetching card for', tomorrowDate)
+      console.log('[CardMysticCompanion] Prefetching card for', tomorrowDate)
 
       const card = await fetchCardForDate(tomorrowDate)
 
@@ -39,9 +39,9 @@ export default defineBackground(() => {
         await fetch(card.imageUrl)
       }
 
-      console.log(`[ArcaneTab] Prefetched: "${card.cardName}" by ${card.artistName}`)
+      console.log(`[CardMysticCompanion] Prefetched: "${card.cardName}" by ${card.artistName}`)
     } catch (err) {
-      console.warn('[ArcaneTab] Prefetch failed (will retry next hour):', err)
+      console.warn('[CardMysticCompanion] Prefetch failed (will retry next hour):', err)
     }
   })
 })

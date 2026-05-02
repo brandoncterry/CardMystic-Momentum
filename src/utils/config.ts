@@ -2,7 +2,7 @@
  * Central configuration for remote resources.
  */
 
-/** Arcane Tab API base URL (no trailing slash) */
+/** CardMystic Companion API base URL (no trailing slash) */
 export const API_BASE = 'https://cardmystic-companion-api.cardmystic-companion.workers.dev'
 
 /** Default dominant color when none is provided by the API */

@@ -16,24 +16,24 @@ export const DEFAULT_SETTINGS: UserSettings = {
 }
 
 export const settingsStorage = storage.defineItem<UserSettings>(
-  'local:arcane-tab:settings',
+  'local:cardmystic-companion:settings',
   { fallback: DEFAULT_SETTINGS },
 )
 
 /** Today's card — rendered on new tab. Keyed by date in the card itself. */
 export const currentCardStorage = storage.defineItem<ResolvedCard | null>(
-  'local:arcane-tab:current-card',
+  'local:cardmystic-companion:current-card',
   { fallback: null },
 )
 
 /** Tomorrow's card — prefetched by the background worker for instant transition. */
 export const prefetchedCardStorage = storage.defineItem<ResolvedCard | null>(
-  'local:arcane-tab:prefetched-card',
+  'local:cardmystic-companion:prefetched-card',
   { fallback: null },
 )
 
 /** User's favorited cards. */
 export const favoritesStorage = storage.defineItem<ResolvedCard[]>(
-  'local:arcane-tab:favorites',
+  'local:cardmystic-companion:favorites',
   { fallback: [] },
 )
