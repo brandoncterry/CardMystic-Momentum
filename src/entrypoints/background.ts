@@ -1,4 +1,5 @@
 import { fetchCardForDate } from '../composables/useArtCache'
+import { getLocalDate } from '../utils/date'
 import { prefetchedCardStorage } from '../utils/storage'
 
 const PREFETCH_ALARM = 'cardmystic-companion-prefetch'
@@ -21,7 +22,7 @@ export default defineBackground(() => {
       // Compute tomorrow's local date
       const tomorrow = new Date()
       tomorrow.setDate(tomorrow.getDate() + 1)
-      const tomorrowDate = tomorrow.toISOString().slice(0, 10)
+      const tomorrowDate = getLocalDate(tomorrow)
 
       // Skip if we already prefetched tomorrow's card
       const cached = await prefetchedCardStorage.getValue()

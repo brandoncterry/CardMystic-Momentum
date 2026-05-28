@@ -1,12 +1,8 @@
 import { ref } from 'vue'
 import type { ResolvedCard } from '../types'
 import { API_BASE, DEFAULT_DOMINANT_COLOR, DEFAULT_VERTICAL_OFFSET } from '../utils/config'
+import { getLocalDate } from '../utils/date'
 import { currentCardStorage, prefetchedCardStorage } from '../utils/storage'
-
-/** Get today's local date as YYYY-MM-DD */
-function getLocalDate(): string {
-  return new Date().toISOString().slice(0, 10)
-}
 
 /** Fetch a card from the API for a given date */
 export async function fetchCardForDate(date: string): Promise<ResolvedCard> {
